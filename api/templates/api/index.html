@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>Translate</title>
+</head>
+<body>
+    <div class="banner-text">
+        <ul class='banner-list'>
+            <li class='letter-1'>C</li>
+            <li class='letter-2'>o</li>
+            <li class='letter-3'>p</li>
+            <li class='letter-3'>y</li>
+            <li class='space-before'>TRANSLATE</li>
+        </ul>
+         </div>
+    <div class="container">
+        <!-- translation form -->
+        <h1>{{ source }}</h1>
+        <form action="" name='translate' method="POST">
+            {% csrf_token %}
+            <div class="grid-container">
+                <div class="grid-item">
+                    <ul class="languages">
+                       <li class='in-lan selected-lan'>DETECT LANGUAGE</li>
+                       <li class='in-lan'>ENGLISH</li>
+                       <li class='in-lan'>SPANISH</li>
+                    </ul>
+                    <div class="input"> 
+                        <div class="input-parent">
+                            <textarea name="source" id='input-area'></textarea>
+                            <h3 class='clear-text'>X</h3>
+                        </div>
+                        <div class="word-count">                        
+                            <div class='count'>
+                                <div class='current-char'>0</div>
+                                <div>/</div>
+                                <div class ='max-char'>10</div>
+                            </div>
+                        </div>                 
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <ul class="translated">
+                        <li class='out-lan selected-lan'>ENGLISH</li>
+                        <li class='out-lan'>RUSSIAN</li>
+                        <li class='out-lan'>SPANISH</li>
+                     </ul>
+                     <div class="result">                    
+                    </div>
+                </div>
+            </div>
+
+        </form>
+        <button id='submit-btn'>Click</button>
+        <!-- end translation form -->
+
+    </div>
+</body>
+<script src="{% static 'script.js' %}"></script>
+
+</html>
