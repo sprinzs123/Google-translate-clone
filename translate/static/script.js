@@ -1,21 +1,79 @@
-let submitBtn = document.querySelector("#submit-btn");
-submitBtn.addEventListener("click", function (event) {
-  let xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://127.0.0.1:8000/", true);
-  console.log(xhr);
-  xhr.onload = function () {
-    console.log("here");
-    if (status == 0) {
-      let result = JSON.parse(this.responseText);
-      console.log(result);
-    }
-  };
-  xhr.send();
+var myData = {
+  hello: 1
+};
+
+function fetchApi(){
+  let submitBtn = document.querySelector("#submit-btn");
+  submitBtn.addEventListener("click", function (event) {
+    let url = 'http://127.0.0.1:8000/api'
+    fetch(url)
+    .then(function(res){
+      return res.text()
+    })
+    .then(function(data){
+      console.log(data)
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    // start copy paste
+  //   data = JSON.stringify({
+  //     headline: "Testing",
+  //     tag: "Testing",
+  //     background_image: "Testing",
+  //     content: "Testing",
+  //     user: 1
+
+  // })
+  
+  // let csrftoken = getCookie('csrftoken');
+  // let response = fetch('http://127.0.0.1:8000/api', {
+  //     method: 'POST',
+  //     body: data,
+  //     headers: { 'Accept': 'application/json, text/plain, */*',
+  //         'Content-Type': 'application/json',
+  //         "X-CSRFToken": csrftoken },
+  // })
+  
+  
+  // function getCookie(name) {
+  //     var cookieValue = null;
+  //     if (document.cookie && document.cookie !== '') {
+  //         var cookies = document.cookie.split(';');
+  //         for (var i = 0; i < cookies.length; i++) {
+  //             var cookie = cookies[i].trim();
+  //             if (cookie.substring(0, name.length + 1) === (name + '=')) {
+  //                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+  //                 break;
+  //             }
+  //         }
+  //     }
+  //     return cookieValue;
+  // }
+  
+// end copy past
 });
+
+}
+
 
 // ################### ALL FUNCTION FOR CHARACTER LIMIT
 // global variable for max characters
 let charLimit = 10;
+fetchApi()
 
 // event listener for when was pressed in area field
 // call function to record how many characters in field and if style needs to be changed

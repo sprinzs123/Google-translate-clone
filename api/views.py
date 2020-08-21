@@ -1,13 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-
-
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 
 
 def home(request):
-    # source = request.GET.get("source")
-    if request.method == 'POST':
-        print('post request')
-        return HttpResponse('working')
-    else:
-        return render(request, 'api/index.html')
+    return render(request, 'api/index.html')
+
+
+@api_view(['POST', 'GET'])
+def api(request):
+    print(str(request.data))
+    return Response('working')
