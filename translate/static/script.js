@@ -7,13 +7,11 @@ function fetchApi(){
   submitBtn.addEventListener("click", function (event) {
     let url = 'http://127.0.0.1:8000/api'
     fetch(url)
-    .then(function(res){
-      return res.text()
-    })
-    .then(function(data){
-      console.log(data)
-    })
-
+    .then((res) => res.text())
+    .then((data) => console.log(data))
+      
+    
+  
 
 
 

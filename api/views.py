@@ -8,7 +8,8 @@ def home(request):
     return render(request, 'api/index.html')
 
 
+# get data from api page
 @api_view(['POST', 'GET'])
 def api(request):
-    print(str(request.data))
+    print((request.data))
     return Response('working')
