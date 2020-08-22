@@ -1,77 +1,39 @@
-var myData = {
-  hello: 1
-};
+// should be trigered at the even because it doesn't return anything bc it is asyc
 
-function fetchApi(){
+// use django api to send data for analysis
+// {data: 'your data what is being sent to back end' }
+// url hast to end at '/'
+// https://stackoverflow.com/questions/45308153/posting-data-to-django-rest-framework-using-javascript-fetch how to do it
+function fetchApi(input){
+  let translatedOutput = document.querySelector('#translated-text')
   let submitBtn = document.querySelector("#submit-btn");
   submitBtn.addEventListener("click", function (event) {
-    let url = 'http://127.0.0.1:8000/api'
-    fetch(url)
-    .then((res) => res.text())
-    .then((data) => console.log(data))
-      
-    
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-    // start copy paste
-  //   data = JSON.stringify({
-  //     headline: "Testing",
-  //     tag: "Testing",
-  //     background_image: "Testing",
-  //     content: "Testing",
-  //     user: 1
-
-  // })
-  
-  // let csrftoken = getCookie('csrftoken');
-  // let response = fetch('http://127.0.0.1:8000/api', {
-  //     method: 'POST',
-  //     body: data,
-  //     headers: { 'Accept': 'application/json, text/plain, */*',
-  //         'Content-Type': 'application/json',
-  //         "X-CSRFToken": csrftoken },
-  // })
-  
-  
-  // function getCookie(name) {
-  //     var cookieValue = null;
-  //     if (document.cookie && document.cookie !== '') {
-  //         var cookies = document.cookie.split(';');
-  //         for (var i = 0; i < cookies.length; i++) {
-  //             var cookie = cookies[i].trim();
-  //             if (cookie.substring(0, name.length + 1) === (name + '=')) {
-  //                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-  //                 break;
-  //             }
-  //         }
-  //     }
-  //     return cookieValue;
-  // }
-  
-// end copy past
-});
-
+    let url = 'http://127.0.0.1:8000/api/'
+    fetch(url, {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+        'Authorization':'Token ed73db9bf18f3c3067be926d5ab64cec9bcb9c5e'
+      },
+      body: JSON.stringify({data: input})
+    })
+    .then(res=>res.json())
+    // .then(data => console.log(data))   
+    .then(data => {
+      let translatedOutput = document.querySelector('#translated-text')
+      console.log(data)
+      console.log(JSON.stringify(data))
+      translatedOutput.innerHTML = JSON.stringify(data).value
+    })     
+ });
 }
 
 
 // ################### ALL FUNCTION FOR CHARACTER LIMIT
 // global variable for max characters
 let charLimit = 10;
-fetchApi()
+console.log(fetchApi(' this is fine'))
 
 // event listener for when was pressed in area field
 // call function to record how many characters in field and if style needs to be changed

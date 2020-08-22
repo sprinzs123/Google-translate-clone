@@ -12,4 +12,4 @@ def home(request):
 @api_view(['POST', 'GET'])
 def api(request):
     print((request.data))
-    return Response('working')
+    return Response(request.data)
