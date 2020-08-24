@@ -6,8 +6,6 @@
 // https://stackoverflow.com/questions/45308153/posting-data-to-django-rest-framework-using-javascript-fetch how to do it
 function fetchApi(input){
   let translatedOutput = document.querySelector('#translated-text')
-  let submitBtn = document.querySelector("#submit-btn");
-  submitBtn.addEventListener("click", function (event) {
     let url = 'http://127.0.0.1:8000/api/'
     fetch(url, {
       method: 'post',
@@ -20,20 +18,23 @@ function fetchApi(input){
     })
     .then(res=>res.json())
     .then(data => {
-      let translatedOutput = document.querySelector('#translated-text')
-      console.log(data.translatedText)
-      console.log(JSON.stringify(data))
+      let translatedOutput = document.querySelector('.area-text')
       translatedOutput.innerHTML = data.translatedText
       let detectedLanguage = data.detectedSourceLanguage
     })     
- });
 }
+
+let submitBtn = document.querySelector("#submit-btn");
+submitBtn.addEventListener("click", function (event) {
+  fetchApi('test')
+})
+
+
 
 
 // ################### ALL FUNCTION FOR CHARACTER LIMIT
 // global variable for max characters
 let charLimit = 10;
-console.log(fetchApi(' this is fine'))
 
 // event listener for when was pressed in area field
 // call function to record how many characters in field and if style needs to be changed
@@ -73,7 +74,7 @@ function isFilled() {
 // ############## LANGUAGE SELECTION
 
 // both function used for language toggling
-// all info is sent to common function for processing
+// toggles language selection btn
 function selectInput() {
   let allBtns = document.querySelectorAll(".in-lan");
   let selectedDiv = document.querySelector('.languages')
@@ -99,22 +100,40 @@ function selectLanguage(allBtns, parentDiv){
         });
       });
 }
-
-
 selectOutput()
 selectInput();
 
 
+// returns what is current languages selected
+// used in api call
 function getSelectedLanguage(){
   let parentDiv = document.querySelector('#all-input');
-  let selected = parentDiv.querySelector('.in-lan')
+  let selected = parentDiv.querySelector('.selected-lan')
   return selected.innerHTML
 }
 
-function getSelectedLanguage(){
+function getTargetLanguage(){
   let parentDiv = document.querySelector('#all-output');
-  let selected = parentDiv.querySelector('.in-lan')
+  let selected = parentDiv.querySelector('.selected-lan')
   return selected.innerHTML
 }
 getSelectedLanguage()
 getTargetLanguage()
+
+
+// clear text fields on 'X' btn click
+// resets char in the field back to 0
+function clearFields(){
+  let charLimit = document.querySelector('.current-char')
+  let clearBtn = document.querySelector('.clear-text')
+  let textBoxes = document.querySelectorAll('.area-text')
+  clearBtn.addEventListener('click', event=>{
+    textBoxes.forEach(insideText => {
+      insideText.innerHTML = ''
+      insideText.value = ''
+      charLimit.innerHTML = 0
+
+    });
+  })
+}
+clearFields()
