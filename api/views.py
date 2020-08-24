@@ -11,5 +11,5 @@ def home(request):
 # get data from api page
 @api_view(['POST', 'GET'])
 def api(request):
-    print((request.data))
-    return Response(request.data)
+    translated = {'translatedText': 'Hello', 'detectedSourceLanguage': 'es', 'input': 'hola'}
+    return Response(translated)

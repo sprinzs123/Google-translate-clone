@@ -24,14 +24,14 @@
             {% csrf_token %}
             <div class="grid-container">
                 <div class="grid-item">
-                    <ul class="languages">
+                    <ul class="languages" id='all-input'>
                        <li class='in-lan selected-lan'>DETECT LANGUAGE</li>
                        <li class='in-lan'>ENGLISH</li>
                        <li class='in-lan'>SPANISH</li>
                     </ul>
                     <div class="input"> 
                         <div class="input-parent">
-                            <textarea name="source" id='input-area'></textarea>
+                            <textarea name="source" id='input-area' class="area-text"></textarea>
                             <h3 class='clear-text'>X</h3>
                         </div>
                         <div class="word-count">                        
@@ -44,13 +44,13 @@
                     </div>
                 </div>
                 <div class="grid-item">
-                    <ul class="translated">
+                    <ul class="translated" id='all-output'>
                         <li class='out-lan selected-lan'>ENGLISH</li>
                         <li class='out-lan'>RUSSIAN</li>
                         <li class='out-lan'>SPANISH</li>
                      </ul>
                      <div class="result">  
-                         <h1 id='translated-text'></h1>                  
+                         <div class="area-text">Test</div>                  
                     </div>
                 </div>
             </div>

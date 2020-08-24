@@ -1,5 +1,5 @@
-// should be trigered at the even because it doesn't return anything bc it is asyc
-
+// should be triggered at the even because it doesn't return anything bc it is asyc
+// writes directly onto output div; get detected language
 // use django api to send data for analysis
 // {data: 'your data what is being sent to back end' }
 // url hast to end at '/'
@@ -19,12 +19,12 @@ function fetchApi(input){
       body: JSON.stringify({data: input})
     })
     .then(res=>res.json())
-    // .then(data => console.log(data))   
     .then(data => {
       let translatedOutput = document.querySelector('#translated-text')
-      console.log(data)
+      console.log(data.translatedText)
       console.log(JSON.stringify(data))
-      translatedOutput.innerHTML = JSON.stringify(data).value
+      translatedOutput.innerHTML = data.translatedText
+      let detectedLanguage = data.detectedSourceLanguage
     })     
  });
 }
@@ -101,9 +101,20 @@ function selectLanguage(allBtns, parentDiv){
 }
 
 
-
-
-
-
 selectOutput()
 selectInput();
+
+
+function getSelectedLanguage(){
+  let parentDiv = document.querySelector('#all-input');
+  let selected = parentDiv.querySelector('.in-lan')
+  return selected.innerHTML
+}
+
+function getSelectedLanguage(){
+  let parentDiv = document.querySelector('#all-output');
+  let selected = parentDiv.querySelector('.in-lan')
+  return selected.innerHTML
+}
+getSelectedLanguage()
+getTargetLanguage()
