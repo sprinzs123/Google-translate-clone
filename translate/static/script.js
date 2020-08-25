@@ -4,7 +4,7 @@
 // {data: 'your data what is being sent to back end' }
 // url hast to end at '/'
 // https://stackoverflow.com/questions/45308153/posting-data-to-django-rest-framework-using-javascript-fetch how to do it
-function fetchApi(input){
+function fetchApi(input, targetLan){
   let translatedOutput = document.querySelector('#translated-text')
     let url = 'http://127.0.0.1:8000/api/'
     fetch(url, {
@@ -14,19 +14,23 @@ function fetchApi(input){
         'Content-Type': 'application/json',
         'Authorization':'Token ed73db9bf18f3c3067be926d5ab64cec9bcb9c5e'
       },
-      body: JSON.stringify({data: input})
+      body: JSON.stringify({data: input, target: targetLan})
     })
     .then(res=>res.json())
-    .then(data => {
-      let translatedOutput = document.querySelector('.area-text')
-      translatedOutput.innerHTML = data.translatedText
-      let detectedLanguage = data.detectedSourceLanguage
-    })     
+    // .then(res => console.log(JSON.stringify(res)))
+    .then(res => {  
+      console.log(res)   
+      let translatedOutput = document.querySelector('.output-text')
+      translatedOutput.innerHTML = JSON.stringify(res[1])
+      // let detectedLanguage = data.detectedSourceLanguage
+    })   
 }
 
+
+// start API call
 let submitBtn = document.querySelector("#submit-btn");
 submitBtn.addEventListener("click", function (event) {
-  fetchApi('test')
+  fetchApi('hola', 'en')
 })
 
 
