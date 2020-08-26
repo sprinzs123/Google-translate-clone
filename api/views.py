@@ -21,13 +21,21 @@ See https://g.co/cloud/translate/v2/translate-reference#supported_languages
 
 
 # get data from api page
+# API info is sent in list 0 language detected, 1 what is translated
 @api_view(['POST', 'GET'])
 def api(request):
     json_request = request.data
     text_for_translation = json_request.get('data')
     translate_language = json_request.get('target')
+    source_lan = json_request.get('input')
     translate_client = translate.Client()
-    # result = translate_client.translate(text_for_translation, target_language=translate_language)
-    result = {'translatedText': 'Hello', 'detectedSourceLanguage': 'es', 'input': 'hola'}
-    result = [result.get('detectedSourceLanguage'), result.get('translatedText')]
-    return Response(result)
+    if source_lan == 'default lan':
+        # result = translate_client.translate(text_for_translation, target_language=translate_language)
+        result = {'translatedText': 'Hello', 'detectedSourceLanguage': 'es', 'input': 'hola'}
+        result = [result.get('detectedSourceLanguage'), result.get('translatedText')]
+        return Response(result)
+    else:
+        # result = translate_client.translate(text_for_translation, target_language=translate_language, source_language=source_lan)
+        result = {'translatedText': 'Hello', 'detectedSourceLanguage': 'es', 'input': 'hola'}
+        result = [result.get('detectedSourceLanguage'), result.get('translatedText')]
+        return Response(result)

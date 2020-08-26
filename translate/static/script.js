@@ -1,10 +1,18 @@
+// ######################################################################
+// ################ ALL FUNCTIONS RELATED TO API CALLS ##################
+// ######################################################################
+
+// global variable/dictionary for language selection
+// used to select language code from what language output button is pressed
+let languages = {'DETECTED LANGUAGE': 'default lan', 'SPANISH': 'es', 'ENGLISH':'en', 'RUSSIAN': 'ru'}
+
 // should be triggered at the even because it doesn't return anything bc it is asyc
 // writes directly onto output div; get detected language
 // use django api to send data for analysis
 // {data: 'your data what is being sent to back end' }
 // url hast to end at '/'
 // https://stackoverflow.com/questions/45308153/posting-data-to-django-rest-framework-using-javascript-fetch how to do it
-function fetchApi(input, targetLan){
+function fetchApi(input, targetLan, inputLan){
   let translatedOutput = document.querySelector('#translated-text')
     let url = 'http://127.0.0.1:8000/api/'
     fetch(url, {
@@ -14,26 +22,47 @@ function fetchApi(input, targetLan){
         'Content-Type': 'application/json',
         'Authorization':'Token ed73db9bf18f3c3067be926d5ab64cec9bcb9c5e'
       },
-      body: JSON.stringify({data: input, target: targetLan})
+      body: JSON.stringify({data: input, target: targetLan, input: inputLan})
     })
     .then(res=>res.json())
-    // .then(res => console.log(JSON.stringify(res)))
     .then(res => {  
-      console.log(res)   
       let translatedOutput = document.querySelector('.output-text')
       translatedOutput.innerHTML = JSON.stringify(res[1])
-      // let detectedLanguage = data.detectedSourceLanguage
+      let detectedLanguage = JSON.stringify(res[0])
+      if(detectedLanguage == 'DETECT LANGUAGE'){
+        let detectedLan = document.querySelector('.in-lan')
+        detectedLan.innerHTML = 'DETECTED ' + toUpperCase(detectedLan)
+      }
     })   
 }
 
 
 // start API call
+// language code is get from JSON list; need for Google API
 let submitBtn = document.querySelector("#submit-btn");
 submitBtn.addEventListener("click", function (event) {
-  fetchApi('hola', 'en')
+  let outputLan = languages[getTargetLanguage()]
+  let inputLan = languages[getSelectedLanguage()]
+  let needTranslation = document.querySelector('#input-area').value
+  console.log('inputLan')
+  fetchApi(needTranslation, outputLan, inputLan)
 })
 
+// returns what is current languages selected
+// used in api call
+function getSelectedLanguage(){
+  let parentDiv = document.querySelector('#all-input');
+  let selected = parentDiv.querySelector('.selected-lan')
+  console.log(selected.innerHTML)
+  return selected.innerHTML
+}
 
+function getTargetLanguage(){
+  let parentDiv = document.querySelector('#all-output');
+  let selected = parentDiv.querySelector('.selected-lan')
+  return selected.innerHTML
+
+}
 
 
 // ################### ALL FUNCTION FOR CHARACTER LIMIT
@@ -108,21 +137,8 @@ selectOutput()
 selectInput();
 
 
-// returns what is current languages selected
-// used in api call
-function getSelectedLanguage(){
-  let parentDiv = document.querySelector('#all-input');
-  let selected = parentDiv.querySelector('.selected-lan')
-  return selected.innerHTML
-}
 
-function getTargetLanguage(){
-  let parentDiv = document.querySelector('#all-output');
-  let selected = parentDiv.querySelector('.selected-lan')
-  return selected.innerHTML
-}
-getSelectedLanguage()
-getTargetLanguage()
+
 
 
 // clear text fields on 'X' btn click
