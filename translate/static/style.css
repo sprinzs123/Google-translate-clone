@@ -14,14 +14,15 @@ body{
     font-family: 'Alata', sans-serif;
     cursor: default;
 }
+
 /* banner on top */
 .banner-text{
     margin-top: 1em;
     margin-bottom: 1em;
-    margin-left:1em
 }
 .banner-list{
     display: flex;
+    align-items: baseline;
 }
 .letter-1{
     color: #4285f4;
@@ -35,6 +36,10 @@ body{
 .letter-3{
     color: #34a853
 }
+.logo-name{
+    font-size: 20px;
+}
+
 
 /* grid alignment */
 .container{
@@ -46,9 +51,13 @@ body{
     display: flex;
     border: solid 1px var(--border-grey);
     border-radius: 15px;
-    box-shadow: 3px 2px 0px 0px rgba(194,194,194,0.53);}
+    box-shadow: 3px 2px 0px 0px rgba(194,194,194,0.53);
+    flex-wrap: wrap;
+}
+
 .grid-item{
     flex: 50%;
+    min-width: 382px;
 }
 .languages, .translated{
     display: flex;
@@ -56,8 +65,26 @@ body{
     margin: 0px;
     padding-top: 1em;
     border-bottom: 1px solid var(--border-grey);   
-
 }
+@media(max-width: 1080px){
+    .container{
+        width: 100%;
+    }
+    .grid-container{
+        border: none;
+        box-shadow: none;
+        border-top: solid 1px var(--border-grey);
+        border-bottom: solid 1px var(--border-grey);
+        border-radius: 0px;
+
+    }
+}
+
+
+
+
+
+
 .languages>li, .translated>li{
     margin-right: 1.5em;
 }
@@ -67,6 +94,8 @@ body{
 }
 .out-lan, .in-lan{
     padding-bottom: 1em;
+    display: block;
+
 }
 .result{
     border-left: 1px solid var(--border-grey);
@@ -105,7 +134,4 @@ textarea :focus + .clear-text{
     color: var(--text-grey);
     padding-top: 0.8em;
     padding-left: 0.8em
-}
-#input-area{
-    pa
 }

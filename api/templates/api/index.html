@@ -10,10 +10,10 @@
 <body>
     <div class="banner-text">
         <ul class='banner-list'>
-            <li class='letter-1'>C</li>
-            <li class='letter-2'>o</li>
-            <li class='letter-3'>p</li>
-            <li class='letter-3'>y</li>
+            <li class='letter-1 logo-name'>C</li>
+            <li class='letter-2 logo-name'>o</li>
+            <li class='letter-3 logo-name'>p</li>
+            <li class='letter-3 logo-name'>y</li>
             <li class='space-before'>TRANSLATE</li>
         </ul>
          </div>
@@ -22,8 +22,8 @@
         <h1>{{ source }}</h1>
         <form action="" name='translate' method="POST">
             {% csrf_token %}
-            <div class="grid-container">
-                <div class="grid-item">
+            <div class="grid-container row">
+                <div class="grid-item col-md-6">
                     <ul class="languages" id='all-input'>
                        <li class='in-lan selected-lan'>DETECT LANGUAGE</li>
                        <li class='in-lan'>ENGLISH</li>
@@ -38,19 +38,19 @@
                             <div class='count'>
                                 <div class='current-char'>0</div>
                                 <div>/</div>
-                                <div class ='max-char'>10</div>
+                                <div class ='max-char'>100</div>
                             </div>
                         </div>                 
                     </div>
                 </div>
-                <div class="grid-item">
+                <div class="grid-item col-lg-6">
                     <ul class="translated" id='all-output'>
                         <li class='out-lan selected-lan'>ENGLISH</li>
                         <li class='out-lan'>RUSSIAN</li>
                         <li class='out-lan'>SPANISH</li>
                      </ul>
                      <div class="result">  
-                         <div class="area-text output-text" output-text>Test</div>                  
+                         <div class="area-text output-text" output-text></div>                  
                     </div>
                 </div>
             </div>

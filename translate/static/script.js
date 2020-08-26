@@ -44,7 +44,6 @@ submitBtn.addEventListener("click", function (event) {
   let outputLan = languages[getTargetLanguage()]
   let inputLan = languages[getSelectedLanguage()]
   let needTranslation = document.querySelector('#input-area').value
-  console.log('inputLan')
   fetchApi(needTranslation, outputLan, inputLan)
 })
 
@@ -61,13 +60,12 @@ function getTargetLanguage(){
   let parentDiv = document.querySelector('#all-output');
   let selected = parentDiv.querySelector('.selected-lan')
   return selected.innerHTML
-
 }
 
 
 // ################### ALL FUNCTION FOR CHARACTER LIMIT
 // global variable for max characters
-let charLimit = 10;
+let charLimit = 100;
 
 // event listener for when was pressed in area field
 // call function to record how many characters in field and if style needs to be changed
