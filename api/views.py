@@ -30,12 +30,12 @@ def api(request):
     source_lan = json_request.get('input')
     translate_client = translate.Client()
     if source_lan == 'default lan':
-        # result = translate_client.translate(text_for_translation, target_language=translate_language)
-        result = {'translatedText': 'Hello', 'detectedSourceLanguage': 'es', 'input': 'hola'}
+        result = translate_client.translate(text_for_translation, target_language=translate_language)
+        # result = {'translatedText': 'Hello', 'detectedSourceLanguage': 'es', 'input': 'hola'}
         result = [result.get('detectedSourceLanguage'), result.get('translatedText')]
         return Response(result)
     else:
-        # result = translate_client.translate(text_for_translation, target_language=translate_language, source_language=source_lan)
-        result = {'translatedText': 'Hello', 'detectedSourceLanguage': 'es', 'input': 'hola'}
+        result = translate_client.translate(text_for_translation, target_language=translate_language, source_language=source_lan)
+        # result = {'translatedText': 'Hello', 'detectedSourceLanguage': 'es', 'input': 'hola'}
         result = [result.get('detectedSourceLanguage'), result.get('translatedText')]
         return Response(result)

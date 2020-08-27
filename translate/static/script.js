@@ -29,10 +29,9 @@ function fetchApi(input, targetLan, inputLan){
       let translatedOutput = document.querySelector('.output-text')
       translatedOutput.innerHTML = JSON.stringify(res[1])
       let detectedLanguage = JSON.stringify(res[0])
-      if(detectedLanguage == 'DETECT LANGUAGE'){
-        let detectedLan = document.querySelector('.in-lan')
-        detectedLan.innerHTML = 'DETECTED ' + toUpperCase(detectedLan)
-      }
+      console.log(detectedLanguage)
+      let detectedLan = document.querySelector('.in-lan')
+      detectedLan.innerHTML = detectedLanguage.toLocaleUpperCase() + ' -DETECTED '      
     })   
 }
 
@@ -41,10 +40,12 @@ function fetchApi(input, targetLan, inputLan){
 // language code is get from JSON list; need for Google API
 let submitBtn = document.querySelector("#submit-btn");
 submitBtn.addEventListener("click", function (event) {
-  let outputLan = languages[getTargetLanguage()]
-  let inputLan = languages[getSelectedLanguage()]
-  let needTranslation = document.querySelector('#input-area').value
-  fetchApi(needTranslation, outputLan, inputLan)
+  if(underCharLimit()){
+    let outputLan = languages[getTargetLanguage()]
+    let inputLan = languages[getSelectedLanguage()]
+    let needTranslation = document.querySelector('#input-area').value
+    fetchApi(needTranslation, outputLan, inputLan)
+  }
 })
 
 // returns what is current languages selected
@@ -52,7 +53,6 @@ submitBtn.addEventListener("click", function (event) {
 function getSelectedLanguage(){
   let parentDiv = document.querySelector('#all-input');
   let selected = parentDiv.querySelector('.selected-lan')
-  console.log(selected.innerHTML)
   return selected.innerHTML
 }
 
@@ -96,9 +96,8 @@ function styleCount() {
 styleCount();
 
 // get true of false if over or under char limit
-function isFilled() {
+function underCharLimit() {
   let charCount = document.querySelector(".current-char").innerHTML;
-  console.log(charCount.innerHTML);
   return charCount < charLimit;
 }
 
@@ -133,11 +132,6 @@ function selectLanguage(allBtns, parentDiv){
 }
 selectOutput()
 selectInput();
-
-
-
-
-
 
 // clear text fields on 'X' btn click
 // resets char in the field back to 0

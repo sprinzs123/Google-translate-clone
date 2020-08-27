@@ -1,7 +1,9 @@
 /* global scope */
 :root{
     --text-grey: rgba(0,0,0,0.54);
-    --border-grey: rgba(0,0,0,0.12)
+    --border-grey: rgba(0,0,0,0.12);
+    --g-blue: #4285f4
+
 }
 .space-before{
     margin-left: 0.5em;
@@ -79,11 +81,7 @@ body{
 
     }
 }
-
-
-
-
-
+/* end grid alignment */
 
 .languages>li, .translated>li{
     margin-right: 1.5em;
@@ -95,7 +93,6 @@ body{
 .out-lan, .in-lan{
     padding-bottom: 1em;
     display: block;
-
 }
 .result{
     border-left: 1px solid var(--border-grey);
@@ -135,3 +132,13 @@ textarea :focus + .clear-text{
     padding-top: 0.8em;
     padding-left: 0.8em
 }
+#submit-btn{
+    margin-top: 1em;
+    margin-left: 1em;
+    border: 1px solid var(--g-blue);
+    background: var(--g-blue);
+    border-radius: 5px;
+    height: 2em;
+
+}
+
