@@ -27,14 +27,12 @@ function fetchApi(input, targetLan, inputLan){
     .then(res=>res.json())
     .then(res => {  
       let translatedOutput = document.querySelector('.output-text')
-      translatedOutput.innerHTML = JSON.stringify(res[1])
-      let detectedLanguage = JSON.stringify(res[0])
-      console.log(detectedLanguage)
+      translatedOutput.innerHTML = res[1]
+      let detectedLanguage = res[0]
       let detectedLan = document.querySelector('.in-lan')
       detectedLan.innerHTML = detectedLanguage.toLocaleUpperCase() + ' -DETECTED '      
     })   
 }
-
 
 // start API call
 // language code is get from JSON list; need for Google API
@@ -97,7 +95,7 @@ styleCount();
 
 // get true of false if over or under char limit
 function underCharLimit() {
-  let charCount = document.querySelector(".current-char").innerHTML;
+  let charCount = document.querySelector(".current-char").innerHTML;  
   return charCount < charLimit;
 }
 
@@ -144,7 +142,7 @@ function clearFields(){
       insideText.innerHTML = ''
       insideText.value = ''
       charLimit.innerHTML = 0
-
+      styleCount();
     });
   })
 }
