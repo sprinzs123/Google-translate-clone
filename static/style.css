@@ -1,0 +1,144 @@
+/* global scope */
+:root{
+    --text-grey: rgba(0,0,0,0.54);
+    --border-grey: rgba(0,0,0,0.12);
+    --g-blue: #4285f4
+
+}
+.space-before{
+    margin-left: 0.5em;
+}
+ul{
+    list-style: none;
+}
+body{
+    color: var(--text-grey);
+    font-family: 'Alata', sans-serif;
+    cursor: default;
+}
+
+/* banner on top */
+.banner-text{
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.banner-list{
+    display: flex;
+    align-items: baseline;
+}
+.letter-1{
+    color: #4285f4;
+}
+.letter-2{
+    color: #ea4335
+}
+.letter-3{
+    color: #fbbc05;
+}
+.letter-3{
+    color: #34a853
+}
+.logo-name{
+    font-size: 20px;
+}
+
+
+/* grid alignment */
+.container{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;    
+}
+.grid-container{
+    display: flex;
+    border: solid 1px var(--border-grey);
+    border-radius: 15px;
+    box-shadow: 3px 2px 0px 0px rgba(194,194,194,0.53);
+    flex-wrap: wrap;
+}
+
+.grid-item{
+    flex: 50%;
+    min-width: 382px;
+}
+.languages, .translated{
+    display: flex;
+    padding-left: 15px;
+    margin: 0px;
+    padding-top: 1em;
+    border-bottom: 1px solid var(--border-grey);   
+}
+@media(max-width: 1080px){
+    .container{
+        width: 100%;
+    }
+    .grid-container{
+        border: none;
+        box-shadow: none;
+        border-top: solid 1px var(--border-grey);
+        border-bottom: solid 1px var(--border-grey);
+        border-radius: 0px;
+
+    }
+}
+/* end grid alignment */
+
+.languages>li, .translated>li{
+    margin-right: 1.5em;
+}
+.input, .result{
+    height: 15em;
+    margin-bottom: 0px;
+}
+.out-lan, .in-lan{
+    padding-bottom: 1em;
+    display: block;
+}
+.result{
+    border-left: 1px solid var(--border-grey);
+}
+.input{
+    align-content: flex-start;
+}
+textarea{
+    resize: none;
+    width: 100%;
+    height: 10em;
+    border: none;
+}
+textarea :focus + .clear-text{
+    display: inline;
+    color: rebeccapurple;
+}
+.input-parent{
+    display: flex;
+}
+.count{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 0.75em;
+    font-size: 13px;    
+}
+.clear-text{
+    margin-right: 0.75em;
+}
+.selected-lan{
+    color: #4285f4;
+    border-bottom: 3px solid  #4285f4;
+}
+.area-text{
+    font-size: 1.5em;
+    color: var(--text-grey);
+    padding-top: 0.8em;
+    padding-left: 0.8em
+}
+#submit-btn{
+    margin-top: 1em;
+    margin-left: 1em;
+    border: 1px solid var(--g-blue);
+    background: var(--g-blue);
+    border-radius: 5px;
+    height: 2em;
+
+}
+
