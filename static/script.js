@@ -4,6 +4,8 @@
 // global variable/dictionary for language selection
 // used to select language code from what language output button is pressed
 let languages = {'DETECTED LANGUAGE': 'default lan', 'SPANISH': 'es', 'ENGLISH':'en', 'RUSSIAN': 'ru'}
+console.log('here')
+
 
 // should be triggered at the even because it doesn't return anything bc it is asyc
 // writes directly onto output div; get detected language
