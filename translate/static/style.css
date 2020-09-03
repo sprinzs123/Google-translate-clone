@@ -16,6 +16,9 @@ body{
     font-family: 'Alata', sans-serif;
     cursor: default;
 }
+.d-show{
+    display: inline;
+}
 
 /* banner on top */
 .banner-text{
@@ -121,10 +124,12 @@ textarea :focus + .clear-text{
 }
 .clear-text{
     margin-right: 0.75em;
+    display: none;
 }
 .selected-lan{
     color: #4285f4;
     border-bottom: 3px solid  #4285f4;
+    
 }
 .area-text{
     font-size: 1.5em;
@@ -139,6 +144,7 @@ textarea :focus + .clear-text{
     background: var(--g-blue);
     border-radius: 5px;
     height: 2em;
-
 }
-
+.btn-text{
+    color: white;
+}

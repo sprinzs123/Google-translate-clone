@@ -147,3 +147,19 @@ function clearFields(){
   })
 }
 clearFields()
+
+
+// make X show when text area is on focus
+// hideX when is out out of focus => blur event listener
+function showDeleteBnt(){
+  let clearBtn = document.querySelector('.clear-text')
+  let textArea = document.querySelector('.area-text')
+  textArea.addEventListener('focus', (event) =>{
+    clearBtn.style.display = 'inline'
+  })
+  textArea.addEventListener('blur', (event) =>{
+    clearBtn.style.display = 'none'
+  })
+  
+}
+showDeleteBnt()
